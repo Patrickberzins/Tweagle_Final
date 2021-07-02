@@ -1,0 +1,25 @@
+
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+<title>Report Success!</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheetwelcome.css' %}">
+</head>
+
+
+<body>
+    <div class="middle">
+      <img src="{% static 'bceagle.jpeg' %}" alt="Eagle">
+      <h1>Report Success !</h1>
+
+      <br>
+      <a href="{% url 'message_board' %}" class="btn btn-light"><p1>Back to Message Board</p1></a>
+    </div>
+</body>
+
+</html>

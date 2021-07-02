@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href= "{% static 'template.css' %}">
+    <link rel="stylesheet" href="{% static 'post_style.css'%}">
+    <link rel="stylesheet" href="{% static 'tweet_box.css' %}">
+    <style>
+        :root {
+        --darkred: #501315;
+        --maroon: #8a100b;
+        --brightRed: #b30000;
+        --brightgold: #d79713;
+        --bordercolor: #726158;
+    }
+    body{
+        margin-top: 20px;
+        background-color: var(--darkred);
+    }
+    .main {
+        padding: 15px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .topbar{
+        background-color: var(--maroon);
+        overflow: hidden;
+        width: 1100px;
+        margin-left: 180px;
+        height: 80px;
+    }
+    .topbar a{
+        float: right;
+        color: whitesmoke;
+        text-align: center;
+        padding: 20px 26px;
+        text-decoration: none ;
+        font-size: 26px;
+        padding-right:75px;
+        padding-bottom: 100px;
+    }
+    .sidebar{
+        background-color: white;
+        color: black;
+        height: 100%;
+    }
+    .sidebar a{
+    
+        margin-left: 10px;
+        display: block;
+        color: maroon;
+        padding-bottom: 10px;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+    .topbar a:hover {
+    background-color: var(--brightgold);
+    max-height: 3em;
+    margin: 0em;
+    text-align:center;
+    padding-left:40px;
+    padding-right: 40px;
+}
+    .card{ 
+    
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #title{
+        margin-right: 770px;
+        color:var(--brightgold)
+    }
+
+    .content{
+        background-color: whitesmoke;
+    }
+    
+    </style>
+</head>
+
+
+<body>
+
+    <h1 id = "title">My Posts</h1>
+
+    <div class = "main">
+        <div class= "topbar">
+            <a href="{% url 'logout' %}">Log Out</a>
+            <a href="">Notifications</a>
+            <a href="{% url 'usermessages' %}">User Posts</a>
+            <a href="{% url 'profile' %}">My Profile</a>
+            <a href="{% url 'message_board' %}">Home</a>
+        </div>
+    </div>
+
+    <div class="mid-col">
+      <ul style="list-style-type:none;">
+          {% for post in object_list %}
+           {% if user.profile.user.id == post.author.id %}
+            <li>
+              <div class="card mx-auto" style="max-width: 540px;">
+                <div class="card-header">
+
+                    {% if post.author.profile.profile_pic %}
+                        <img class = 'profile_pic' src = "{{ post.author.profile.profile_pic.url }}" width = 5%>
+                    {% else %}
+                        {% load static %}
+                        <img class = 'profile_pic' src = "{% static 'profilepic.png' %}" width = 5%>
+                    {% endif %}
+                <span class = name_date>
+                     <span class = "profile-txtboard">{{ post.author.first_name }} {{ post.author.last_name }}</span> - {{ post.post_date }} @ {{ post.post_time }}
+                    {% if user.id == post.author.id or user.is_superuser %}
+                </span>
+                  <a href="{% url 'delete_post' post.pk%}" type="submit" class='btn' ><span class= "button_icon" id = "delete-button"><img class="icon" src="{% static 'icons_delete.png' %}"></span></a>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <p class = "context-txt">
+                    <a href="{% url 'post-detail' post.pk %}">{{ post.body }}</a>
+
+                    {{ post.profile_pic }}
+
+                    <p1 class = 'warning'> {{ post.flag_check }} </p1>
+
+                  </p>
+                </div>
+                {% if user.is_authenticated %}
+                <div  class="card-footer" id = "reaction-buttons">
+                    <form action = "{% url 'like_post' post.pk%}" method = 'POST'>
+                        {% csrf_token %}
+                        <button type = 'submit', name='post_id', value='{{ post.id }}', class = 'btn like_button'> <span class= "button_icon" id = "like-button"><img class="post_like_icon" src="{% static 'icons8_heart_52.png' %}">{{ post.like_count }}</span> </button>
+                    </form>
+                    <a href="{% url 'comment_creation' post.pk %}" type="submit" class='btn'><span class= "button_icon" id = "comment-button"><img class="post_icon" src="{% static 'icons8_comments_52.png' %}"></span></a>
+                    <a href="{% url 'report_page'%}" type="submit" class='btn'><span class= "button_icon" id = "report-button"><img class="icon" src="{% static 'icons8_high_importance_96.png' %}"></span></a>
+                       
+                </div>
+                {% endif %}
+              </div>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+
+
+</body>
+</html>

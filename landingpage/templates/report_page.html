@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<br/><br/><br/>
+<div class="container">
+
+<h1>Report potential false information</h1>
+<br/><br/>
+<h4>To help combat the dissemination of false information, 
+    Tweagle takes every user report into account before reaching a decision 
+    on removing a post or user. Please take a second to specify 
+    your reasons for reporting this post:</h4>
+<br/>
+<table>
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_table }}
+</table>
+
+    <button class="btn btn-dark">Submit</button>
+<br/><br/>
+
+<a href="{% url 'home' %}" class="btn btn-light">Back to Tweagle Home Page</a>
+
+</div>
+{% endblock %}

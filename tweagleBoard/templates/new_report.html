@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Report a Post </title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href={% static "report_assets/bootstrap/css/bootstrap.min.css" %}>
+		<link rel="stylesheet" href={% static "report_assets/css/form-elements.css" %}>
+        <link rel="stylesheet" href={% static "report_assets/css/style.css" %>
+
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href={% static "report_assets/ico/favicon.png" %}>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href={% static "report_assets/ico/apple-touch-icon-144-precomposed.png" %}>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href={% static "report_assets/ico/apple-touch-icon-114-precomposed.png" %}>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href={% static "report_assets/ico/apple-touch-icon-72-precomposed.png" %}> 
+        <link rel="apple-touch-icon-precomposed" href={% static "report_assets/ico/apple-touch-icon-57-precomposed.png" %}>
+
+        <style>
+            .modal-content {
+                padding:20px;
+            }
+
+            .rounded-circle {
+                border-radius:50%;
+                margin-right:10px;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <!-- Content -->
+        <!--
+        <div class="top-content">
+        	
+            <div class="top-big-link">
+                <a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-report">Report</a>
+            </div>
+            
+        </div>
+        -->
+        <!-- MODAL -->
+        <!-- <div class="modal fade" id="modal-report" tabindex="-1" role="dialog" aria-labelledby="modal-report-label" aria-hidden="true"></div> -->
+        	<div class="modal-dialog">
+        		<div class="modal-content">
+        			
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        				</button>
+        				<h3 class="modal-title" id="modal-report-label">Reporting a Post {{target_user}}</h3>
+        				<p>To help combat the dissemination of false information, 
+                            Tweagle takes every user report into account before reaching a decision 
+                            on removing a post or user. Please take a second to specify 
+                            your reasons for reporting this post:</p>
+        			</div>
+        			
+        			<div class="modal-body">
+        				
+	                    <form role="form" action="" method="post" class="report-from">
+	                    	
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Reporting User Name</th>
+                                        <th>Reported User Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% if user.profile.profile_pic %}
+                                        <td><img class="rounded-circle me-2" width="30" height="30" src="{{ user.profile.profile_pic.url }}" />{{user}}</td>
+                                        <!-- <td><img class="rounded-circle me-2" width="30" height="30" src={% static "report_assets/avatars/avatar2.jpeg" %}/>Isabel Ryan</td> -->
+                                        {% else %}
+                                        {% load static %}
+                                        <td><img class="rounded-circle me-2" width="30" height="30" src="{% static 'profilepic.png' %}" />{{user}}</td>
+                                        <!-- <td><img class="rounded-circle me-2" width="30" height="30" src={% static "report_assets/avatars/avatar2.jpeg" %}/>Isabel Ryan</td> -->
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--
+                            <h1><b>Reporting a post</b></h1>
+                            <p>To help combat the dissemination of false information, 
+                                Tweagle takes every user report into account before reaching a decision 
+                                on removing a post or user. Please take a second to specify 
+                                your reasons for reporting this post:</p>
+                           
+                            <div class="form-group item-required" id="selectreason">
+                                <label for="reason">Reason for report:</label>
+                                <select id="selectreason" name="selectreason" class="form-control input-value">
+                                    <option value="">Other</option>
+                                    <option value="">Contains Hate Speech</option>
+                                    <option value="">Contains Nudity</option>
+                                    <option value="">Contains Fake News</option>
+                                    <option value="">Contains Threats Towards Others</option>
+                                    <option value="">Offending Language</option>
+                                </select>
+                                </div>
+                            <div>
+                            -->
+                            
+                          
+
+                            {% if user.is_authenticated %}
+                            <br/><br/><br/>
+
+                            <div class="container"></div>
+
+                            <h1><b>Please provide additional info:</b></h1>
+                            <br/><br/>
+                            <h4></h4>
+                            <br/>
+                            </div>
+                            
+                            <div class="form-group">
+                            <form method='POST'>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button class="btn btn-dark">Publish</button>
+                            </form>
+                            </div>
+                            {% else %}
+                            You've not logged in yet!
+                            {% endif %}
+                            <!--
+	                        <div class="form-group">
+	                        	<label class="sr-only" for="form-report-info">Additional info..</label>
+	                        	<textarea name="form-report-info" placeholder="Additional Info...." 
+	                        				class="form-report-info form-control" id="form-report-info"></textarea>
+	                        </div>
+	                        <button type="submit" class="btn">Report</button>
+                            -->
+	                    </form>
+	                    
+        			</div>
+        			
+        		</div>
+        	</div>
+            <!-- MODAL  -->
+        <div class="modal fade" id="modal-report" tabindex="-1" role="dialog" aria-labelledby="modal-report-label" aria-hidden="true">
+        	<div class="modal-dialog">
+        		<div class="modal-content">
+        			
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        				</button>
+        				<h3 class="modal-title" id="modal-report-label">Report User</h3>
+        				<p>Fill in the form below let report a user:</p>
+        			</div>
+        			
+        			<div class="modal-body">
+        				
+	                    <form role="form" action="" method="post" class="report-from">
+	                    	
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Reporting User Name</th>
+                                        <th>Reported User Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><img class="rounded-circle me-2" width="30" height="30" src={% static "report_assets/avatars/avatar1.jpeg" %} />Airi Satou</td>
+                                        <td><img class="rounded-circle me-2" width="30" height="30" src={% static "report_assets/avatars/avatar2.jpeg" %} />Isabel Ryan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h1><b>Reported Message:</b></h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                            <div class="form-group item-required" id="selectreason">
+                                <label for="reason">Reason for report:</label>
+                                <select id="selectreason" name="selectreason" class="form-control input-value">
+                                    <option value="">Other</option>
+                                    <option value="">Contains Hate Speech</option>
+                                    <option value="">Contains Nudity</option>
+                                    <option value="">Contains Fake News</option>
+                                    <option value="">Contains Threats Towards Others</option>
+                                    <option value="">Offending Language</option>
+                                </select>
+                                </div>
+                            <div>
+
+                            </div>
+                            <p3> Please provide any additional information you have:</p3>
+	                        <div class="form-group">
+	                        	<label class="sr-only" for="form-report-info">Additional info..</label>
+	                        	<textarea name="form-report-info" placeholder="Additional Info...." 
+	                        				class="form-report-info form-control" id="form-report-info"></textarea>
+	                        </div>
+	                        <button type="submit" class="btn">Report</button>
+	                    </form>
+	                    
+        			</div>
+        			
+        		</div>
+        	</div>
+        </div>
+
+
+        <!-- Javascript -->
+        <script src={% static "report_assets/js/jquery-1.11.1.min.js" %}></script>
+        <script src={% static "report_assets/bootstrap/js/bootstrap.min.js" %}></script>
+        <script src={% static "report_assets/js/jquery.backstretch.min.js" %}></script>
+        <script src={% static "report_assets/js/scripts.js" %}></script>
+
+
+    </body>
+
+</html>

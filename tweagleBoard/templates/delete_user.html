@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Tweets - Frontpage</title>
+    {% load static %}
+    <link rel="stylesheet" href= "{% static 'template.css' %}">
+    <link rel="stylesheet" href="{% static 'post_style.css'%}">
+    <link rel="stylesheet" href="{% static 'tweet_box.css' %}">
+</head>
+
+
+<body >
+    <div class = "left-col">
+        <div class = "container1">
+
+            <nav>
+                <ul class="navlinks">
+                    <li><a href="{% url 'message_board' %}"> <img class="logo" src="{% static 'Boston_College_Eagles_logo.jpg' %}" alt="Home"> </a></li>
+
+                    <ul class="home">
+                        <li>
+                            <a href="{% url 'message_board' %}" class="current">
+                                <div class="navbutton">
+                                    <img class="icon" src="{% static 'icons8_home_96.png' %}" alt="Home">
+                                    <span class="navtext"> Home </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="messages">
+                        <li>
+                            <a href="#" class="noncurrent">
+                                <div class="navbutton">
+                                    <img class="icon" src="{% static 'icons8_messages_100.png' %}" alt="Messages">
+                                    <span class="navtext"> Messages </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="profile">
+                        <li>
+                            <a href="{% url 'profile' %}" class="noncurrent">
+                                <div class="navbutton">
+                                    <img class="icon" src="{% static 'icons8_male_user_96.png' %}" alt="Profile">
+                                    <span class="navtext"> Profile </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+
+                {% if user.is_authenticated %}
+
+                <ul class="logout">
+                    <li>
+                        <a href="{% url 'logout' %}" class="noncurrent">
+                            <div class="navbutton">
+                                <img class="icon" src="{% static 'icons_logout.png' %}" alt="Logout">
+                                <span class="navtext"> Logout </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                {% else %}
+
+                <ul class="login">
+                    <li>
+                        <a href="{% url 'home' %}" class="noncurrent">
+                            <div class="navbutton">
+                                <img class="icon" src="{% static 'icons_logout.png' %}" alt="Login">
+                                <span class="navtext"> Login </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+
+                {% if user.is_superuser %}
+
+                <ul class="admin_view">
+                    <li>
+                        <a href="{% url 'admin_view' %}" class="noncurrent">
+                            <div class="navbutton">
+                                <span class="navtext"> Admin </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                {% endif %}
+
+                <a href="{% url 'post_creation' %}" class="postbttnlink">
+                    <div class="postbutton">
+                        <span class="postbttntxt">Post</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="mid-col">
+        {% block content %}
+
+        <h1>Delete User</h1>
+        <br/><br/>
+
+        <div class="form-group">
+          <form method="POST">
+            {% csrf_token %}
+            <strong>Are you sure?</strong><br/>
+            <button class='btn btn-secondary'>Delete</button>
+
+          </form>
+        </div>
+
+
+        {% endblock %}
+  </div>
+
+  <div class = "right-col">
+        <input class="searchbar" type="text" name="" placeholder="Search users...">
+
+        <section class="results">
+            <nav>
+                <ul>
+
+                </ul>
+            </nav>
+        </section>
+    </div>
+
+
+</body>
+</html>

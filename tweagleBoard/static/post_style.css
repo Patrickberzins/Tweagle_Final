@@ -1,0 +1,350 @@
+:root {
+    --darkred: #501315;
+    --maroon: #8a100b;
+    --brightRed: #b30000;
+    --brightgold: #d79713;
+    --bordercolor: #726158;
+}
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.tweetbox-bottom {
+    float: right;
+    position: relative;
+    bottom: -2.5em;
+    padding-right: 3em;
+}
+
+.post-txt {
+    position: relative;
+    left: 1em;
+    bottom: 2em;
+}
+
+.timeline-item {
+    padding-top: 1em;
+}
+
+.container{
+    border-style: solid;
+    padding: 1em;
+    border-color: var(--bordercolor);
+    position: relative;
+    right: 1em;
+    border-radius: 1em;
+}
+
+.profiletxt-board {
+    color: white !important;
+    font-weight:bold;
+    font-size: 1em;
+    position: relative;
+    bottom: 1em;
+}
+
+.card-header {
+  color: white !important;
+  font-weight:bold;
+  font-size: 1em;
+  position: relative;
+  bottom: 1em;
+}
+
+.card-body {
+  color: white;
+  font-weight:normal;
+  text-decoration: none !important;
+}
+
+.context-txt {
+
+    color: white;
+    font-weight:normal;
+    text-decoration: none !important;
+    margin-top:0px !important;
+}
+
+.tweet-btn {
+    position: relative;
+    background: var(--brightRed);
+    font-weight: bolder;
+    color: white;
+    border-style: none;
+    border-radius: 3em;
+    height: 3em;
+    width: 8em;
+    cursor: pointer;
+}
+
+.post-txt {
+    border: none;
+    outline: none;
+    position: relative;
+    bottom: 0.5em;
+    width: 30em;
+    height: 3em;
+    background: var(--darkred);
+    color: white;
+    font-size: 1.25em;
+}
+
+.post-txt::placeholder{
+    color: var(--bordercolor);
+}
+
+.tweet-btn:hover {
+    background: var(--brightgold);
+}
+
+.card-footer {
+    color: white;
+    font-weight:lighter;
+    font-size: 0.85em;
+    height: 2.5em;
+    padding-top:10px;
+    
+}
+
+.btn {
+  outline: none;
+  background-color: inherit
+}
+#reaction-btns {
+    float: right;
+    position: relative;
+    top: 0.3em;
+}
+
+#like-btn {
+    padding: 0.4em;
+    max-height: 2em;
+    background-color: inherit;
+}
+
+#like-btn:hover{
+    border-radius:4em;
+}
+
+#comment-btn {
+    padding: 0.4em;
+    max-height: 2em;
+}
+
+#comment-btn:hover{
+    border-radius:4em;
+}
+
+#repost-btn{
+    padding: 0.4em;
+    max-height: 2em;
+}
+
+#report-button {
+    float: right;
+}
+
+#btn {
+    padding: 0.4em;
+    max-height: 2em;
+}
+
+#repost-btn:hover{
+    border-radius:4em;
+}
+
+.like-count {
+    position: relative;
+    bottom: 1em;
+}
+
+.comment-count {
+    margin-left: 6em;
+    position: relative;
+    bottom: 1em;
+}
+
+.repost-count {
+    margin-left: 6em;
+    position: relative;
+    bottom: 1em;
+}
+
+.card {
+  background-color: inherit;
+  border: 1px solid;
+  border-color: var(--bordercolor);
+  border-radius: 25px !important;
+  padding: 20px !important;
+  padding-bottom:10px !important;
+  width: 100% !important;
+  max-width:90% !important;
+  margin:20px 20px 20px 0;
+}
+
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+.btn-outline-secondary {
+    border:none;
+}
+
+.warning {
+    color:red !important;
+    border-radius:15px;
+}
+
+.footer_time {
+    vertical-align: middle;
+}
+
+button {
+    vertical-align: middle;
+}
+
+.card-header{
+    padding-top:10px;
+}
+
+.icon {
+    height:2em;
+}
+
+.post_icon {
+    height:1.75em;
+    padding-right:30px;
+}
+
+.post_like_icon {
+    height:1.75em;
+    padding-right:5px;
+}
+
+.post_comment_icon {
+    height:1.75em;
+    padding-right:30px;
+    padding-left:25px;
+}
+
+.post_title {
+    color:white !important;
+}
+
+#delete-button {
+    float: right;
+}
+
+.flag_list {
+    padding: 10px; 
+    background-color: white;
+    text-align:center;
+}
+
+.admin_action2 {
+    padding:5px;
+}
+
+
+#add-flag {
+    margin-left:90px;
+    margin-top:20px;
+    text-align:center;
+}
+
+
+h1 {
+    color: white;
+    padding-left:10px;
+    text-align:center;
+}
+
+.add_flag_form {
+    justify-content:center;
+}
+
+label {
+    display:none;
+}
+
+form {
+    text-align:center;
+}
+
+.flag_submit {
+    text-align:center;
+    padding:5px;
+}
+
+.profile {
+    border-radius:50px;
+}
+
+.profile_pic {
+    border-radius: 50%;
+    height:2em;
+    width:2em;
+    object-fit: cover;
+}
+.profile_head {
+    border-radius: 50%;
+    height:5em;
+    width:5em;
+    object-fit: cover;
+
+}
+.top-profile {
+    border-radius: 50%;
+}
+
+.name_date {
+    vertical-align: top;
+    padding:10px;
+}
+h2 {
+    text-align:center;
+}
+
+.new_post_box {
+    margin-top:30px;
+    padding:15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width:75%;
+    border-radius: 20px;
+}
+
+.publish {
+    color:white;
+    background:var(--brightRed);
+    padding:10px;
+    border:none;
+    border-radius:18px;
+    width:120px;
+    font-size:15px;
+    margin:20px;
+}
+
+.return_message {
+    border-radius: 20px;
+    color:white;
+    background-color: var(--brightgold);
+    padding:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size:15px;
+    margin:20px;
+}
+
+.no_comment_message {
+    padding-left:20px;
+    color:white;
+}
+
+.like_button {
+    border:none;
+    padding-bottom:18px;
+    color:white;
+}
+

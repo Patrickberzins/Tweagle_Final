@@ -1,0 +1,45 @@
+{% extends 'message_base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+
+<h1>Profile Page</h1>
+<br/></br>
+<ul style="list-style-type:none;">
+    {% for Post in object_list %}
+        {% if user.profile.user.id == post.author.id %}
+            <hr><a href="{% url 'post-detail' post.pk %}"></a>
+                <li>{{ Post.author.first_name }} {{ Post.author.last_name }} - {{ Post.post_date }} @ {{ Post.post_time }}
+                <br/>
+                {{ Post.body }}
+                </li>
+            <hr>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
+<style>
+    .form-group{
+        margin-left: -40px;
+    }
+</style>
+<div class = "form-group">
+    {% if user.profile.profile_pic %}
+        <img src = "{{ user.profile.profile_pic.url }}" width = 20%>
+    {% else %}
+        {% load static %}
+        <img src = "{% static 'profilepic.png' %}" width = 20%>
+    {% endif %}
+    </br></br>
+    <p>Bio: </p>
+    {{user.profile.bio}}
+    </br></br>
+    <form method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class = "btn btn-secondary">Update Profile</button>
+</div>
+
+
+{% endblock %}

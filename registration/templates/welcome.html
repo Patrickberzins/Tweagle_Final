@@ -1,0 +1,25 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+<title>Welcome</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheetwelcome.css' %}">
+</head>
+
+
+<body>
+    <div class="middle">
+      <img src="{% static 'bceagle.jpeg' %}" alt="Eagle">
+      <h1>WELCOME USER {{ author.first_name }}</h1>
+      <hr>
+      <p>Let The Truth Set You Free!</p>
+      <hr>
+      <br>
+      <a href="{% url 'login' %}" class="btn btn-light"><p1>Login Page</p1></a>
+    </div>
+</body>
+
+</html>

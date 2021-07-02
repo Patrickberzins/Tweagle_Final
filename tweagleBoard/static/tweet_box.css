@@ -1,0 +1,19 @@
+:root {
+    --darkred: #501315;
+    --maroon: #8a100b;
+    --brightRed: #b30000;
+    --brightgold: #d79713;
+    --bordercolor: #726158;
+}
+
+
+.tweetbox {
+    background: var(--darkred);
+    padding: 1em;
+    padding-left: 2.5em;
+    padding-top: 1.5em;
+    position: relative;
+    left: 22.2%;
+    width: 58%;
+    height: 10vh;
+}

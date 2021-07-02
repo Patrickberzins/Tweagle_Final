@@ -1,0 +1,209 @@
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Messaging</title>
+  <link rel="stylesheet" href="{% static 'bulma.min.css' %}">
+  <link rel="stylesheet" href="{% static 'stylepm.css' %}">
+  <link rel="stylesheet" href= "{% static 'templatepm.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+  <style>
+    
+  </style>
+</head>
+
+<div class = "left-col">
+  <div class = "container1">
+
+      <nav>
+          <ul class="navlinks">
+              <li><a href="{% url 'message_board' %}"> <img class="logo" src="{% static 'Boston_College_Eagles_logo.jpg' %}" alt="Home"> </a></li>
+
+              <ul class="home">
+                  <li>
+                      <a href="{% url 'message_board' %}" class="current">
+                          <div class="navbutton">
+                              <img class="icon" src="{% static 'icons8_home_96.png' %}" alt="Home">
+                              <span class="navtext"> Home </span>
+                          </div>
+                      </a>
+                  </li>
+              </ul>
+              <ul class="messages">
+                  <li>
+                      <a href="{% url 'inbox' %}" class="noncurrent">
+                          <div class="navbutton">
+                              <img class="icon" src="{% static 'icons8_messages_100.png' %}" alt="Messages">
+                              <span class="navtext"> Messages </span>
+                          </div>
+                      </a>
+                  </li>
+              </ul>
+              
+              <ul class="profile">
+                  <li>
+                      <a href="{% url 'profile' %}" class="noncurrent">
+                          <div class="navbutton">
+                              <img class="icon" src="{% static 'icons8_male_user_96.png' %}" alt="Profile">
+                              <span class="navtext"> Profile </span>
+                          </div>
+                      </a>
+                  </li>
+              </ul>
+          </ul>
+
+          {% if user.is_authenticated %}
+
+          <ul class="logout">
+              <li>
+                  <a href="{% url 'logout' %}" class="noncurrent">
+                      <div class="navbutton">
+                          <img class="icon" src="{% static 'icons_logout.png' %}" alt="Logout">
+                          <span class="navtext"> Logout </span>
+                      </div>
+                  </a>
+              </li>
+          </ul>
+          {% else %}
+
+          <ul class="login">
+              <li>
+                  <a href="{% url 'home' %}" class="noncurrent">
+                      <div class="navbutton">
+                          <img class="icon" src="{% static 'icons_logout.png' %}" alt="Login">
+                          <span class="navtext"> Login </span>
+                      </div>
+                  </a>
+              </li>
+          </ul>
+          {% endif %}
+
+          {% if user.is_superuser %}
+
+          <ul class="admin_view">
+              <li>
+                  <a href="{% url 'admin_view' %}" class="noncurrent">
+                      <div class="navbutton">
+                          <span class="navtext"> Admin </span>
+                      </div>
+                  </a>
+              </li>
+          </ul>
+
+          {% endif %}
+
+          <a href="{% url 'post_creation' %}" class="postbttnlink">
+              <div class="postbutton">
+                  <span class="postbttntxt">Post</span>
+              </div>
+          </a>
+      </nav>
+  </div>
+</div>
+
+
+<div class="columns is-mobile">
+  
+
+  <div class="column is-one-quarter" style = "margin-left: 350">
+  <aside class="menu">
+    <h1 class="title is-2">
+    </h1>
+  <ul style="overflow-y: scroll; height: 500px" class="menu-list">
+
+{% for message in messages %}
+
+<a class="{% if active_direct == message.user.username %}is-active{% endif %}" href="{% url 'directs' message.user.username %}">
+<div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+          {% if message.user.profile.profile_pic %}
+            <img src="{{ message.user.profile.profile_pic.url }}" alt="Placeholder image">
+          {% else %}
+            <img src="{% static 'profilepic.png' %}" alt="Placeholder image">
+          {% endif %}
+      </figure>
+    </div>
+    <div class="media-content">
+
+      <div class="content">
+        <p>
+          <strong>{{ message.user.first_name }} {{ message.user.last_name }}</strong> <small>@{{ message.user.username }}</small>
+        </p>
+      </div>
+
+    </div>
+  </article>
+</div>
+</a>
+{% endfor %}
+
+</ul>
+</aside>
+<br>
+<a href = "{% url 'usersearch' %}" class="button is-success">New Conversation</a>
+
+</div>
+
+<div class="column" style="margin-top: 20px;">
+
+<div style="overflow-y: scroll; height: 500px">
+
+{% for direct in directs %}
+<div class="box" style="margin-right: 10px;">
+  <article class="media">
+    <div class="media-left">
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{ direct.sender.first_name }} {{ direct.sender.last_name }}</strong> <small>@{{ direct.sender.username }}</small> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
+        </p>
+        {{ direct.body }} 
+      </div>
+    </div>
+  </article>
+</div>
+{% endfor %}
+
+
+</div>
+
+
+<form role="form" method="POST" action="{% url 'senddirect' %}">
+  {% csrf_token %}
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64" style="margin-top: 10px;">
+      {% if user.profile.profile_pic %}
+            <img src="{{ user.profile.profile_pic.url }}" alt="Placeholder image">
+          {% else %}
+            <img src="{% static 'profilepic.png' %}" alt="Placeholder image">
+      {% endif %}
+    </p>
+  </figure>
+  <div class="media-content">
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <div class="field" style = "margin-right: 20px; margin-top: 10px;">
+      <p class="control">
+        <textarea class="textarea" name="body" placeholder="Write a message..."></textarea>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <button type="submit" name="action" class="button is-info">Send</buttom>
+        </div>
+      </div>
+    </nav>
+  </div>
+</article>
+</form>
+
+</div>
+</div>
+

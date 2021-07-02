@@ -1,0 +1,210 @@
+:root {
+    --darkred: #501315;
+    --maroon: #8a100b;
+    --brightRed: #b30000;
+    --brightgold: #d79713;
+    --bordercolor: #726158;
+}
+
+/*Page is divided into 3 cols. Left col is navigation, mid col is posts, right col is searchbar */
+
+body {
+    background:var(--darkred);
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.left-col {
+    background: white;
+    padding: 1em;
+    float: left;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.mid-col {
+    padding-left:20px;
+    position: relative;
+    left: 22.2%;
+    background: var(--darkred);
+    width: 60%;
+    height: 100%;
+    padding-bottom: 2em;
+    border-top-style:solid;
+    border-width: 0.1em;
+    border-color: var(--bordercolor);
+}
+
+.right-col {
+    position: fixed;
+    right: 0;
+    background: var(--darkred);
+    width: 17.8%;
+    top: 0;
+    bottom: 0;
+    border-left-style: solid;
+    border-width: 0.1em;
+    border-color: var(--bordercolor);
+}
+
+/*left col stuff*/
+
+.logo {
+    max-width: 5em;
+    max-height: 5em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.navbutton {
+    margin-left: 2em;
+    margin-bottom: 1em;
+    padding: 5px;
+    text-align:left;
+    padding-left:30px;
+    padding-top:20px;
+    max-width:400px;
+}
+
+.navbutton:hover {
+    background-color: var(--brightgold);
+    border-radius: 4em;
+    max-height: 3em;
+    margin: 0em;
+    text-align:center;
+    padding-left:0px;
+}
+
+.icon {
+    max-width: 3em;
+    max-height: 3em;
+}
+
+.navlinks {
+    line-height: 1em;
+}
+
+.current {
+    color: var(--brightRed);
+    text-decoration: none;
+}
+
+.noncurrent {
+    color: var(--darkred);
+    text-decoration: none;
+}
+
+.navtext {
+    padding-left: 1em;
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 2em;
+    position: relative;
+    bottom: 0.75em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.postbutton {
+    background: var(--brightRed);
+    border-radius: 25px;
+    padding: 2em;
+    width: 10em;
+    height: 0.25em;
+    position: relative;
+    top: 2em;
+    left: 2em;
+}
+
+.postbutton:hover{
+    background: var(--darkred);
+}
+
+.postbttntxt {
+    color: white;
+    font-size: 1.25em;
+    font-weight: 700;
+    position: relative;
+    left: 2.8em;
+    bottom: 0.5em;
+}
+
+.postbttnlink {
+    text-decoration: none;
+}
+
+.profilePic {
+    max-height: 4em;
+    max-width: 4em;
+    border-radius: 4em;
+}
+
+.profilebox {
+    margin-left: 2em;
+    margin-top: 5em;
+}
+
+.profilebox:hover {
+    background-color: var(--brightgold);
+    border-radius: 4em;
+    max-height: 8em;
+    max-width: 14em;
+}
+
+.profilelink {
+    text-decoration: none;
+}
+
+.profiletxt {
+    color: var(--darkred);
+    font-size: 1em;
+    bottom: 1em;
+    left: 1em;
+}
+
+/*right col stuff*/
+
+.searchbar {
+    position: relative;
+    top: 2em;
+    left: 1em;
+    background: var(--brightRed);
+    width: 15em;
+    height: 1em;
+    padding: 1em;
+    border-radius:2em;
+    border-style: none;
+    outline: none;
+    color: white;
+}
+
+.searchbar::placeholder{
+    color: white;
+}
+
+.searchbar:active{
+    border-style: solid;
+    border-color: var(--brightRed);
+    background:var(--darkred);
+}
+
+.search-text {
+    position: relative;
+    bottom: 0.5em;
+    max-width: 16em;
+}
+
+h2 {
+    color: white;
+}
+
+.navtext {
+    padding-top:10px;
+    vertical-align: middle;
+}

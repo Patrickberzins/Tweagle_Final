@@ -1,0 +1,42 @@
+<!--
+{% extends 'base.html' %}
+{% block content %}
+
+<br/><br/><br/>
+<div class="container">
+
+<h1>Report Success!</h1>
+
+<br/><br/>
+<a href="{% url 'home' %}" class="btn btn-dark">Back to Tweagle Home Page</a>
+
+</div>
+
+{% endblock %}
+-->
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+<title>Report Success!</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheetwelcome.css' %}">
+</head>
+
+
+<body>
+    <div class="middle">
+      <img src="{% static 'bceagle.jpeg' %}" alt="Eagle">
+      <h1>Report Success !</h1>
+      <hr>
+      <p>Let The Truth Set You Free</p>
+      <hr>
+      <br>
+      <a href="{% url 'message_board' %}" class="btn btn-light"><p1>Tweagle Message Board</p1></a>
+    </div>
+</body>
+
+</html>
